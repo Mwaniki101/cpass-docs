@@ -336,6 +336,53 @@
     margin-top: 2px;
   }
 
+  /* ── AI / ML section ── */
+  .ai-section {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+  }
+
+  .ai-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .ai-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ai-stage {
+    background: rgba(46, 170, 123, 0.12);
+    border: 1px solid rgba(46, 170, 123, 0.25);
+    border-radius: 5px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .ai-stage-label {
+    font-size: 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green);
+    white-space: nowrap;
+    min-width: 52px;
+  }
+
+  .ai-stage-text {
+    font-size: 8px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.35;
+  }
+
   /* ── Bottom row: 3 columns ── */
   .bottom-row {
     display: grid;
@@ -596,6 +643,33 @@
       <div class="stat-item"><div class="stat-num">1,630</div><div class="stat-label">Learning Outcomes</div></div>
       <div class="stat-item"><div class="stat-num">40</div><div class="stat-label">Qualifications</div></div>
       <div class="stat-item"><div class="stat-num">99.9%</div><div class="stat-label">Coverage</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ AI / ML INTELLIGENCE LAYER ═══ -->
+  <div class="ai-section">
+    <div class="ai-inner">
+      <div class="ai-text">
+        <div class="section-label" style="color:var(--green);">The Game Changer</div>
+        <h2 style="color:var(--white); font-size:13px;">A system that gets smarter with every worker</h2>
+        <p style="color:rgba(255,255,255,0.75); font-size:8.5px; line-height:1.5; margin-bottom: 0;">
+          CPASS is built on machine learning that improves with scale. As more workers complete more tasks across more platforms, the models learn which skill combinations predict success in specific roles, regardless of formal qualifications. Over time, CPASS moves beyond verification into <strong style="color:var(--green);">predictive intelligence</strong>: identifying that a worker's unique skill signature makes them ideal for a role they've never held, surfacing talent that no CV or certificate could reveal. The more the system learns, the more precise it gets. That is the compounding advantage.
+        </p>
+      </div>
+      <div class="ai-stages">
+        <div class="ai-stage">
+          <div class="ai-stage-label">Now</div>
+          <div class="ai-stage-text">Curated SkillGraph maps tasks to skills with standards integration</div>
+        </div>
+        <div class="ai-stage">
+          <div class="ai-stage-label">With Scale</div>
+          <div class="ai-stage-text">ML learns patterns: which skill combinations predict success in which roles</div>
+        </div>
+        <div class="ai-stage">
+          <div class="ai-stage-label">At Maturity</div>
+          <div class="ai-stage-text">Predictive matching: "this worker's profile is a 94% fit for your top performers"</div>
+        </div>
+      </div>
     </div>
   </div>
 
