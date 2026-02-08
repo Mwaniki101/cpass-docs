@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPASS.ai — MVP Overview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --navy: #1E1656;
+    --green: #2EAA7B;
+    --green-light: #e8f7f0;
+    --green-fade: rgba(46, 170, 123, 0.08);
+    --navy-light: #f4f3f8;
+    --gray-text: #4a4a6a;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--navy);
+    background: var(--white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    margin: 0 auto;
+    padding: 20mm 18mm 14mm 18mm;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2.5px solid var(--green);
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-area svg { height: 32px; width: auto; }
+
+  .tagline {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .header-url {
+    font-size: 11px;
+    color: var(--gray-text);
+    font-weight: 500;
+  }
+
+  /* ── Section titles ── */
+  .section-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 5px;
+    line-height: 1.25;
+  }
+
+  p, li {
+    font-size: 9.5px;
+    line-height: 1.55;
+    color: var(--gray-text);
+  }
+
+  /* ── Two-column layout ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .section {
+    margin-bottom: 12px;
+  }
+
+  /* ── Problem section ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .problem-card {
+    background: var(--navy-light);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border-left: 3px solid var(--green);
+  }
+
+  .problem-card strong {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .problem-card p {
+    font-size: 8.5px;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* ── What CPASS Does ── */
+  .stakeholder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .stakeholder-card {
+    background: var(--white);
+    border: 1.5px solid #e4e3ed;
+    border-radius: 6px;
+    padding: 10px 12px;
+    position: relative;
+  }
+
+  .stakeholder-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green);
+    border-radius: 6px 6px 0 0;
+  }
+
+  .stakeholder-card .card-icon {
+    font-size: 16px;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .stakeholder-card strong {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .stakeholder-card p {
+    font-size: 8.5px;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* ── Flow diagram ── */
+  .flow-section {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .flow-section .section-label {
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: nowrap;
+  }
+
+  .flow-step {
+    background: rgba(46, 170, 123, 0.15);
+    border: 1px solid rgba(46, 170, 123, 0.35);
+    border-radius: 6px;
+    padding: 7px 10px;
+    text-align: center;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .flow-step .step-num {
+    font-size: 7.5px;
+    font-weight: 700;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+
+  .flow-step .step-text {
+    font-size: 8.5px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .flow-arrow {
+    color: var(--green);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0 3px;
+    flex-shrink: 0;
+  }
+
+  .flow-loop {
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .flow-loop span {
+    font-size: 8px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  /* ── Engine / Moat ── */
+  .engine-section {
+    background: var(--green-fade);
+    border: 1.5px solid rgba(46, 170, 123, 0.2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .engine-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-top: 8px;
+  }
+
+  .engine-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .engine-icon {
+    width: 22px;
+    height: 22px;
+    background: var(--green);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .engine-icon svg {
+    width: 13px;
+    height: 13px;
+    fill: white;
+  }
+
+  .engine-item strong {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .engine-item p {
+    font-size: 8px;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* ── Stats bar ── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(46, 170, 123, 0.2);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 7px;
+    font-weight: 600;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  /* ── Bottom row: 3 columns ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .bottom-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bottom-section h2 {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .bottom-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .bottom-section li {
+    font-size: 8.5px;
+    line-height: 1.5;
+    padding-left: 12px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .bottom-section li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5.5px;
+    width: 5px;
+    height: 5px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  /* ── Flywheel visual ── */
+  .flywheel-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .flywheel-ring {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+  }
+
+  .flywheel-items {
+    list-style: none;
+    padding: 0;
+  }
+
+  .flywheel-items li {
+    font-size: 8px;
+    line-height: 1.45;
+    padding-left: 10px;
+    position: relative;
+    margin-bottom: 3px;
+    color: var(--gray-text);
+  }
+
+  .flywheel-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 4px;
+    height: 4px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid #e4e3ed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer span {
+    font-size: 8px;
+    color: var(--gray-text);
+    font-weight: 500;
+  }
+
+  .footer-cta {
+    font-size: 8.5px;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  @media print {
+    body { background: white; }
+    .page {
+      width: 100%;
+      padding: 18mm 16mm 12mm 16mm;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="header">
+    <div class="logo-area">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+        <text x="0" y="38" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-weight="900" font-size="42" fill="#1E1656">C</text>
+        <rect x="30" y="4" width="32" height="38" rx="5" fill="#2EAA7B"/>
+        <text x="35" y="38" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-weight="900" font-size="42" fill="#1E1656">P</text>
+        <path d="M46 22 L52 16 L52 20 L58 20 L58 24 L52 24 L52 28 Z" fill="white" transform="rotate(-45, 52, 22)"/>
+        <text x="64" y="38" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-weight="900" font-size="42" fill="#1E1656">ASS</text>
+        <text x="152" y="38" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-weight="900" font-size="32" fill="#1E1656">.ai</text>
+      </svg>
+      <span class="tagline">Making every job count</span>
+    </div>
+    <span class="header-url">cpass.ai</span>
+  </div>
+
+  <!-- ═══ THE PROBLEM ═══ -->
+  <div class="section">
+    <div class="section-label">The Problem</div>
+    <h2>Skills exist everywhere. Proof of skills exists almost nowhere.</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <strong>Workers</strong>
+        <p>Billions of gig and platform workers have real, proven skills but no way to verify or credential them. They retrain for jobs they can already do.</p>
+      </div>
+      <div class="problem-card">
+        <strong>Employers &amp; Platforms</strong>
+        <p>Hire blind. No reliable way to assess what a worker actually knows before onboarding. Costly training, high turnover, low trust.</p>
+      </div>
+      <div class="problem-card">
+        <strong>Education Institutions</strong>
+        <p>Cannot efficiently recognize prior learning. RPL processes are manual, expensive, and slow — weeks of paperwork for each candidate.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WHAT CPASS DOES ═══ -->
+  <div class="section">
+    <div class="section-label">What CPASS Does</div>
+    <h2>API infrastructure that turns work experience into verified, portable credentials</h2>
+    <p style="margin-bottom:6px;">CPASS extracts skills from how people describe their work — in any language or local vernacular — and maps them to international standards, qualification pathways, and career opportunities.</p>
+    <div class="stakeholder-grid">
+      <div class="stakeholder-card">
+        <span class="card-icon">&#128100;</span>
+        <strong>Workers</strong>
+        <p>See a verified skill profile, know exactly which qualifications they're ready for, and get a clear pathway to close remaining gaps.</p>
+      </div>
+      <div class="stakeholder-card">
+        <span class="card-icon">&#127970;</span>
+        <strong>Employers &amp; Platforms</strong>
+        <p>Search verified talent by skill and proficiency. Run skill extraction on workforce data. Get gap analysis and upskilling intelligence.</p>
+      </div>
+      <div class="stakeholder-card">
+        <span class="card-icon">&#127979;</span>
+        <strong>Institutions</strong>
+        <p>Receive RPL-ready candidates pre-matched to qualifications with learning outcome coverage mapped. Assess faster, certify more.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <div class="flow-section">
+    <div class="section-label">How It Works</div>
+    <div class="flow-row">
+      <div class="flow-step">
+        <div class="step-num">01</div>
+        <div class="step-text">Worker describes<br>their work</div>
+      </div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step">
+        <div class="step-num">02</div>
+        <div class="step-text">Multilingual NLP<br>extracts skills</div>
+      </div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step">
+        <div class="step-num">03</div>
+        <div class="step-text">Mapped to<br>ESCO + O*NET</div>
+      </div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step">
+        <div class="step-num">04</div>
+        <div class="step-text">Matched to<br>qualifications</div>
+      </div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step">
+        <div class="step-num">05</div>
+        <div class="step-text">Gap synthesis<br>&amp; pathways</div>
+      </div>
+      <span class="flow-arrow">&#8594;</span>
+      <div class="flow-step">
+        <div class="step-num">06</div>
+        <div class="step-text">Employer insights<br>&amp; credentials</div>
+      </div>
+    </div>
+    <div class="flow-loop"><span>&#8634; Gap synthesis feeds back into worker development, employer decision-making, and institutional planning</span></div>
+  </div>
+
+  <!-- ═══ THE ENGINE — WHY CPASS IS DIFFERENT ═══ -->
+  <div class="engine-section">
+    <div class="section-label">The Engine — Why CPASS Is Different</div>
+    <h2>A hand-curated skill graph with deep standards integration. This is the moat.</h2>
+    <div class="engine-grid">
+      <div class="engine-item">
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><line x1="8" y1="7" x2="11" y2="16" stroke="white" stroke-width="1.5"/><line x1="16" y1="7" x2="13" y2="16" stroke="white" stroke-width="1.5"/><line x1="8.5" y1="6" x2="15.5" y2="6" stroke="white" stroke-width="1.5"/></svg></div>
+        <div>
+          <strong>SkillGraph: Not a flat list — a knowledge graph</strong>
+          <p>211 skills connected by 398 edges encoding prerequisites, complementary skills, and tool relationships. Curated by domain experts, not scraped.</p>
+        </div>
+      </div>
+      <div class="engine-item">
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="1.8" fill="none"/></svg></div>
+        <div>
+          <strong>Standards-native from day one</strong>
+          <p>Every skill cross-referenced to ESCO and O*NET at the extraction level. Not bolted on — built in. No other product does this.</p>
+        </div>
+      </div>
+      <div class="engine-item">
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2a15 15 0 014 10 15 15 0 01-4 10M12 2a15 15 0 00-4 10 15 15 0 004 10" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+        <div>
+          <strong>Multilingual by design</strong>
+          <p>Extract skills from English or any local vernacular. Same structured, standards-linked output regardless of input language.</p>
+        </div>
+      </div>
+      <div class="engine-item">
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+        <div>
+          <strong>99.9% qualification coverage</strong>
+          <p>1,630 learning outcomes mapped across 40 qualifications. Institutions plug in — no mapping work required on their side.</p>
+        </div>
+      </div>
+      <div class="engine-item">
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+        <div>
+          <strong>Gap synthesis, not just matching</strong>
+          <p>We don't just say what you have. We show what's missing, how to close the gap, and the fastest pathway to a credential or role.</p>
+        </div>
+      </div>
+      <div class="engine-item">
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+        <div>
+          <strong>API-first: platforms plug in, they don't rebuild</strong>
+          <p>Designed for integration. Platforms send unstructured data, get structured skill intelligence back. Simple, powerful, embeddable.</p>
+        </div>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">211</div><div class="stat-label">Skills</div></div>
+      <div class="stat-item"><div class="stat-num">13</div><div class="stat-label">Domains</div></div>
+      <div class="stat-item"><div class="stat-num">398</div><div class="stat-label">Edges</div></div>
+      <div class="stat-item"><div class="stat-num">1,630</div><div class="stat-label">Learning Outcomes</div></div>
+      <div class="stat-item"><div class="stat-num">40</div><div class="stat-label">Qualifications</div></div>
+      <div class="stat-item"><div class="stat-num">99.9%</div><div class="stat-label">Coverage</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ BOTTOM ROW: Revenue + Why Now + Flywheel ═══ -->
+  <div class="bottom-row">
+
+    <!-- Revenue Model -->
+    <div class="bottom-section">
+      <div class="section-label">Revenue Model</div>
+      <h2>Multi-sided, built to scale</h2>
+      <ul>
+        <li><strong>Platforms &amp; Employers</strong> — Tiered API subscriptions based on usage volume, from startups to enterprise</li>
+        <li><strong>Institutions</strong> — Per-query pricing or annual license for RPL candidate pipelines</li>
+        <li><strong>Workers</strong> — Direct-to-worker premium services: bespoke career mapping, credential generation, pathway coaching</li>
+      </ul>
+      <p style="margin-top:6px; font-size:8.5px; font-weight:600; color:var(--navy);">Target: 85% gross margin</p>
+    </div>
+
+    <!-- Why Now -->
+    <div class="bottom-section">
+      <div class="section-label">Why Now</div>
+      <h2>The skill economy is arriving</h2>
+      <ul>
+        <li><strong>AI is disrupting traditional work</strong> — roles are shifting faster than credentials can keep up. Skills, not degrees, are becoming the currency</li>
+        <li><strong>The gig economy is the catch net</strong> — as workers transition, gig platforms become the bridge. But without skill verification, it's a black box</li>
+        <li><strong>Global work mobility</strong> — employers are sourcing talent across borders, but have no way to verify skills across different standards and languages</li>
+        <li><strong>Government push for RPL</strong> — regulators worldwide are mandating recognition of prior learning but lack the technology infrastructure</li>
+      </ul>
+    </div>
+
+    <!-- The Flywheel -->
+    <div class="bottom-section">
+      <div class="section-label">What's Next</div>
+      <h2>The flywheel</h2>
+      <svg class="flywheel-ring" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#e4e3ed" stroke-width="3"/>
+        <path d="M50 12 A38 38 0 0 1 88 50" fill="none" stroke="#2EAA7B" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M88 50 A38 38 0 0 1 50 88" fill="none" stroke="#1E1656" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M50 88 A38 38 0 0 1 12 50" fill="none" stroke="#2EAA7B" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+        <path d="M12 50 A38 38 0 0 1 50 12" fill="none" stroke="#1E1656" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+        <!-- Arrows -->
+        <polygon points="86,44 92,50 86,56" fill="#1E1656"/>
+        <polygon points="56,86 50,92 44,86" fill="#2EAA7B"/>
+        <polygon points="14,56 8,50 14,44" fill="#2EAA7B" opacity="0.6"/>
+        <polygon points="44,14 50,8 56,14" fill="#1E1656" opacity="0.6"/>
+        <!-- Center -->
+        <circle cx="50" cy="50" r="16" fill="#1E1656"/>
+        <text x="50" y="47" text-anchor="middle" font-size="6" font-weight="700" fill="white" font-family="Inter, sans-serif">SKILL</text>
+        <text x="50" y="56" text-anchor="middle" font-size="6" font-weight="700" fill="#2EAA7B" font-family="Inter, sans-serif">GRAPH</text>
+      </svg>
+      <ul class="flywheel-items">
+        <li><strong>New verticals in days</strong> — multi-sector architecture already mapped (construction, services, automotive, ICT, manufacturing)</li>
+        <li><strong>More platforms = richer graph</strong> — every integration adds data density, improving matching for everyone</li>
+        <li><strong>Governments close the loop</strong> — fund training institutions, set standards, and use CPASS to track how workers move through careers and into the formal economy</li>
+        <li><strong>Enablement layer</strong> — other businesses build on verified skill data. CPASS becomes infrastructure, not just a tool</li>
+        <li><strong>Network effects compound</strong> — workers want to be where employers look; employers go where verified talent lives</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <span>CPASS.ai &mdash; Competency Profile Assessment System &nbsp;|&nbsp; info@cpass.ai</span>
+    <span class="footer-cta">cpass.ai &nbsp;&bull;&nbsp; Live demo: cpassdemo.lovable.app</span>
+  </div>
+
+</div>
+</body>
+</html>
