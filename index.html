@@ -20,8 +20,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   @page {
-    size: A4;
-    margin: 0;
+    size: 17in 14in;
+    margin: 0.15in;
   }
 
   body {
@@ -35,13 +35,23 @@
   .page {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 48px 32px 48px;
+    padding: 24px 36px 16px 36px;
     display: flex;
     flex-direction: column;
   }
 
   @media (max-width: 800px) {
-    .page { padding: 24px 20px; }
+    .page { padding: 20px 16px; }
+  }
+
+  @media print {
+    .page { padding: 8px 24px 8px 24px; }
+    .section { margin-bottom: 8px; }
+    .flow-section { padding: 10px 14px; margin-bottom: 8px; }
+    .engine-section { padding: 10px 14px; margin-bottom: 8px; }
+    .ai-section { padding: 8px 14px; margin-bottom: 8px; }
+    .bottom-row { gap: 10px; }
+    h2 { font-size: 13px; margin-bottom: 4px; }
   }
 
   /* ── Header ── */
@@ -253,7 +263,7 @@
     font-style: italic;
   }
 
-  /* ── Engine / Moat ── */
+  /* ── Engine + Game Changer combined ── */
   .engine-section {
     background: var(--green-fade);
     border: 1.5px solid rgba(46, 170, 123, 0.2);
@@ -262,49 +272,94 @@
     margin-bottom: 12px;
   }
 
-  .engine-grid {
+  .engine-combined {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px 16px;
-    margin-top: 8px;
+    gap: 20px;
   }
 
-  .engine-item {
+  .engine-left h2, .engine-right h2 {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .engine-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .engine-bullets li {
+    font-size: 8.5px;
+    line-height: 1.45;
+    padding-left: 10px;
+    position: relative;
+    margin-bottom: 4px;
+    color: var(--gray-text);
+  }
+
+  .engine-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 4px;
+    height: 4px;
+    background: var(--green);
+    border-radius: 50%;
+  }
+
+  .engine-bullets li strong {
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .engine-right {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .engine-right h2 {
+    color: var(--white);
+  }
+
+  .gc-text {
+    font-size: 8.5px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 8px;
+  }
+
+  .gc-stages {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .gc-stage {
+    background: rgba(46, 170, 123, 0.12);
+    border: 1px solid rgba(46, 170, 123, 0.25);
+    border-radius: 4px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: baseline;
     gap: 8px;
   }
 
-  .engine-icon {
-    width: 22px;
-    height: 22px;
-    background: var(--green);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .engine-icon svg {
-    width: 13px;
-    height: 13px;
-    fill: white;
-  }
-
-  .engine-item strong {
-    font-size: 9px;
+  .gc-stage-label {
+    font-size: 7px;
     font-weight: 700;
-    color: var(--navy);
-    display: block;
-    margin-bottom: 1px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green);
+    white-space: nowrap;
+    min-width: 55px;
   }
 
-  .engine-item p {
+  .gc-stage-text {
     font-size: 8px;
-    line-height: 1.4;
-    margin: 0;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.35;
   }
 
   /* ── Stats bar ── */
@@ -335,53 +390,6 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-top: 2px;
-  }
-
-  /* ── AI / ML section ── */
-  .ai-section {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 12px;
-  }
-
-  .ai-inner {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 16px;
-    align-items: center;
-  }
-
-  .ai-stages {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .ai-stage {
-    background: rgba(46, 170, 123, 0.12);
-    border: 1px solid rgba(46, 170, 123, 0.25);
-    border-radius: 5px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-  }
-
-  .ai-stage-label {
-    font-size: 7px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--green);
-    white-space: nowrap;
-    min-width: 52px;
-  }
-
-  .ai-stage-text {
-    font-size: 8px;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.35;
   }
 
   /* ── Bottom row: 3 columns ── */
@@ -589,51 +597,42 @@
     <div class="flow-loop"><span>&#8634; Every job feeds the profile. Every skill compounds. Workers move across platforms and verticals with proof of what they can do.</span></div>
   </div>
 
-  <!-- ═══ THE ENGINE — WHY CPASS IS DIFFERENT ═══ -->
+  <!-- ═══ ENGINE + GAME CHANGER (combined two-column) ═══ -->
   <div class="engine-section">
-    <div class="section-label">The Engine: Why CPASS Is Different</div>
-    <h2>A knowledge graph that knows what every job proves. This is the moat.</h2>
-    <div class="engine-grid">
-      <div class="engine-item">
-        <div class="engine-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><line x1="8" y1="7" x2="11" y2="16" stroke="white" stroke-width="1.5"/><line x1="16" y1="7" x2="13" y2="16" stroke="white" stroke-width="1.5"/><line x1="8.5" y1="6" x2="15.5" y2="6" stroke="white" stroke-width="1.5"/></svg></div>
-        <div>
-          <strong>SkillGraph: tasks → skills → careers</strong>
-          <p>211 skills connected by 398 edges encoding which tasks require which skills, at what level, and how they relate. Curated by domain experts. This is the inference engine.</p>
-        </div>
+    <div class="engine-combined">
+      <!-- Left: The Engine -->
+      <div class="engine-left">
+        <div class="section-label">The Engine</div>
+        <h2>What powers CPASS</h2>
+        <ul class="engine-bullets">
+          <li><strong>SkillGraph: tasks → skills → careers.</strong> 211 skills, 398 edges encoding which tasks require which skills, at what level, and how they relate. Curated by domain experts.</li>
+          <li><strong>Standards-native.</strong> Every skill cross-referenced to ESCO and O*NET from the moment it's recorded. Globally portable.</li>
+          <li><strong>Proficiency through repetition.</strong> CPASS tracks frequency, complexity, and recency to infer real proficiency as workers repeat and advance.</li>
+          <li><strong>Cross-platform, cross-vertical.</strong> Work on one platform builds skills that count on another. One unified, compounding profile.</li>
+          <li><strong>Gap synthesis.</strong> Shows what's missing and what new roles, qualifications, and career paths a growing skillset opens up.</li>
+          <li><strong>Multilingual + API-first.</strong> Ingest work data in any language. Platforms plug in via API, send task data, get structured skill intelligence back.</li>
+        </ul>
       </div>
-      <div class="engine-item">
-        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="1.8" fill="none"/></svg></div>
-        <div>
-          <strong>Standards-native from day one</strong>
-          <p>Every skill cross-referenced to ESCO and O*NET. Not bolted on, built in. Skills are globally portable from the moment they're recorded.</p>
-        </div>
-      </div>
-      <div class="engine-item">
-        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div>
-          <strong>Proficiency through repetition</strong>
-          <p>Do a task once and you're at foundation level. Do it 50 times across harder contexts and you're advanced. CPASS tracks frequency, complexity, and recency to infer real proficiency.</p>
-        </div>
-      </div>
-      <div class="engine-item">
-        <div class="engine-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
-        <div>
-          <strong>Cross-platform, cross-vertical</strong>
-          <p>Work on one platform builds skills that count on another. CPASS tracks across platforms and verticals to build one unified, compounding profile.</p>
-        </div>
-      </div>
-      <div class="engine-item">
-        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
-        <div>
-          <strong>Gap synthesis unlocks new opportunities</strong>
-          <p>CPASS goes beyond showing what you have. It reveals what's missing and what new roles, qualifications, and career paths your growing skillset opens up.</p>
-        </div>
-      </div>
-      <div class="engine-item">
-        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2a15 15 0 014 10 15 15 0 01-4 10M12 2a15 15 0 00-4 10 15 15 0 004 10" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
-        <div>
-          <strong>Multilingual + API-first</strong>
-          <p>Ingest work data in any language or local vernacular. Platforms plug in via API, send task data, and get structured skill intelligence back.</p>
+      <!-- Right: The Game Changer -->
+      <div class="engine-right">
+        <div class="section-label" style="color:var(--green);">The Game Changer</div>
+        <h2>ML is already running. It only gets sharper.</h2>
+        <p class="gc-text">
+          CPASS already uses machine learning for skill extraction, semantic search, and embedding-based matching. As more workers complete more tasks across more platforms, the models learn which skill combinations predict success in specific roles, regardless of formal qualifications. CPASS evolves from verification into <strong style="color:var(--green);">predictive intelligence</strong>: surfacing that a worker's unique skill signature makes them ideal for a role they've never held. Talent that no CV or certificate could reveal. The more data flows through the system, the more precise it gets.
+        </p>
+        <div class="gc-stages">
+          <div class="gc-stage">
+            <div class="gc-stage-label">Today</div>
+            <div class="gc-stage-text">ML-powered extraction, semantic search, and embedding-based matching are live</div>
+          </div>
+          <div class="gc-stage">
+            <div class="gc-stage-label">With Scale</div>
+            <div class="gc-stage-text">Models learn which skill combinations predict success in which roles, across verticals</div>
+          </div>
+          <div class="gc-stage">
+            <div class="gc-stage-label">At Maturity</div>
+            <div class="gc-stage-text">Predictive matching: "this worker's skill signature is a 94% fit for your top performers"</div>
+          </div>
         </div>
       </div>
     </div>
@@ -647,33 +646,6 @@
     </div>
   </div>
 
-  <!-- ═══ AI / ML INTELLIGENCE LAYER ═══ -->
-  <div class="ai-section">
-    <div class="ai-inner">
-      <div class="ai-text">
-        <div class="section-label" style="color:var(--green);">The Game Changer</div>
-        <h2 style="color:var(--white); font-size:13px;">Machine learning is already running. It only gets sharper.</h2>
-        <p style="color:rgba(255,255,255,0.75); font-size:8.5px; line-height:1.5; margin-bottom: 0;">
-          CPASS already uses ML for skill extraction, semantic search, and embedding-based matching. As more workers complete more tasks across more platforms, the models learn which skill combinations predict success in specific roles, regardless of formal qualifications. CPASS evolves from verification into <strong style="color:var(--green);">predictive intelligence</strong>: identifying that a worker's unique skill signature makes them ideal for a role they've never held, surfacing talent that no CV or certificate could reveal. The more data flows through the system, the more precise it gets. That is the compounding advantage.
-        </p>
-      </div>
-      <div class="ai-stages">
-        <div class="ai-stage">
-          <div class="ai-stage-label">Today</div>
-          <div class="ai-stage-text">ML-powered skill extraction, semantic search, and embedding-based matching are live</div>
-        </div>
-        <div class="ai-stage">
-          <div class="ai-stage-label">With Scale</div>
-          <div class="ai-stage-text">Models learn which skill combinations predict success in which roles, across verticals</div>
-        </div>
-        <div class="ai-stage">
-          <div class="ai-stage-label">At Maturity</div>
-          <div class="ai-stage-text">Predictive matching: "this worker's skill signature is a 94% fit for your top performers"</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- ═══ BOTTOM ROW: Revenue + Why Now + Flywheel ═══ -->
   <div class="bottom-row">
 
@@ -682,9 +654,9 @@
       <div class="section-label">Revenue Model</div>
       <h2>Multi-sided, built to scale</h2>
       <ul>
-        <li><strong>Platforms &amp; Employers:</strong> Tiered API subscriptions based on usage volume, from startups to enterprise</li>
-        <li><strong>Institutions:</strong> Per-query pricing or annual license for RPL candidate pipelines</li>
-        <li><strong>Workers:</strong> Direct-to-worker premium services including bespoke career mapping, credential generation, and pathway coaching</li>
+        <li><strong>Platforms &amp; Employers:</strong> Tiered API subscriptions by usage volume</li>
+        <li><strong>Institutions:</strong> Per-query or annual license for RPL pipelines</li>
+        <li><strong>Workers:</strong> Premium services: career mapping, credentials, pathway coaching</li>
       </ul>
       <p style="margin-top:6px; font-size:8.5px; font-weight:600; color:var(--navy);">Target: 85% gross margin</p>
     </div>
@@ -694,10 +666,10 @@
       <div class="section-label">Why Now</div>
       <h2>The skill economy is arriving</h2>
       <ul>
-        <li><strong>AI is disrupting traditional work.</strong> Roles are shifting faster than credentials can keep up. Skills, not degrees, are becoming the currency</li>
-        <li><strong>The gig economy is the catch net.</strong> As workers transition, gig platforms become the bridge. But without skill verification, it's a black box</li>
-        <li><strong>Global work mobility is accelerating.</strong> Employers are sourcing talent across borders but have no way to verify skills across different standards and languages</li>
-        <li><strong>Governments are pushing for RPL.</strong> Regulators worldwide are mandating recognition of prior learning but lack the technology infrastructure</li>
+        <li><strong>AI is disrupting traditional work.</strong> Skills, not degrees, are becoming the currency</li>
+        <li><strong>The gig economy is the catch net.</strong> Without skill verification, it's a black box</li>
+        <li><strong>Global work mobility is accelerating.</strong> No way to verify skills across borders and standards</li>
+        <li><strong>Governments are pushing for RPL.</strong> Mandating recognition of prior learning but lack the tech</li>
       </ul>
     </div>
 
@@ -735,7 +707,7 @@
   <!-- ═══ FOOTER ═══ -->
   <div class="footer">
     <span>CPASS.ai | Competency Profile Assessment System &nbsp;|&nbsp; info@cpass.ai</span>
-    <span class="footer-cta">cpass.ai &nbsp;&bull;&nbsp; Live demo: cpassdemo.lovable.app</span>
+    <span class="footer-cta">cpass.ai &nbsp;&bull;&nbsp; Live demo: demo.cpass.ai</span>
   </div>
 
 </div>
